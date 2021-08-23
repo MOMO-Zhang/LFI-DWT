@@ -1,0 +1,12 @@
+clc;
+clear;
+I=imread('../1.png','png'); 
+IR = rgb2gray(I);
+[K,Kbin] = K_generate(IR);
+[C1,C2,C3,r1,r2,r3,V1,V2,V3] = encryptionKS(K,I);
+C_RGB(:,:,1)=uint8(C1);
+C_RGB(:,:,2)=uint8(C2);
+C_RGB(:,:,3)=uint8(C3);
+figure,imshow(C_RGB),    title('Cipher Image');
+D = decryptionKS(K,C1,C2,C3,r1,r2,r3,V1,V2,V3);
+figure,imshow(D),    title('Decrypted Image');
